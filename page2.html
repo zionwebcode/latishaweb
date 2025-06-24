@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prannkster</title>
+  <style>
+    html, body {
+      margin: 0;
+      font-family: 'Press Start 2P', monospace;
+      background: #1e2c3c;
+      color: #a3d3ff;
+      display: block;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .pixel-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 200vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .pixel {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #7ecbff;
+      opacity: 0.6;
+      animation: float 10s infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+      100% { transform: translateY(-40px) scale(1); opacity: 0; }
+    }
+    .owner-profile {
+      width: 100%;
+      background-color: #223348;
+      color: #ffffff;
+      display: flex;
+      padding: 30px 20px;
+      justify-content: center;
+      border-bottom: 4px solid #4ea3d9;
+      z-index: 1;
+    }
+    .profile-card {
+      background-color: #2a3f5b;
+      border: 3px solid #4ea3d9;
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      width: 90%;
+      max-width: 800px;
+      align-items: center;
+    }
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 3px solid #7ecbff;
+    }
+    .profile-info {
+      flex: 1;
+    }
+    .profile-info h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #a3d3ff;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .content {
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      align-items: flex-start;
+      z-index: 1;
+    }
+    .selector {
+      flex: 1;
+      display: grid;
+      grid-template-rows: repeat(4, auto);
+      gap: 20px;
+    }
+    .selector button {
+      background: #2a3f5b;
+      border: none;
+      border-left: 5px solid #7ecbff;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #a3d3ff;
+      transition: background-color 0.3s;
+    }
+    .selector button:hover {
+      background-color: #355777;
+    }
+    .producto-wrapper {
+      flex: 2;
+      padding-left: 40px;
+      position: relative;
+      min-height: 360px;
+    }
+    .producto-section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.4s ease;
+    }
+    .producto-section.active {
+      opacity: 1;
+      transform: translateX(0);
+      position: relative;
+    }
+    .producto-section img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #7ecbff;
+    }
+    .producto-section h2 {
+      font-size: 18px;
+      color: #a3d3ff;
+      margin-bottom: 10px;
+    }
+    .producto-section p {
+      color: #d0ebff;
+      font-size: 12px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="pixel-particles" id="particles"></div>
+
+  <div class="owner-profile">
+    <div class="profile-card">
+      <img class="profile-avatar" src="latisha.jpg" alt="Seller">
+      <div class="profile-info">
+        <h1>Latisha</h1>
+        <div class="stats">
+          <div class="stat">❤️ HP: 20</div>
+          <div class="stat">🔷 Purity: 16</div>
+          <div class="stat">⚔️ Atk: 7</div>
+          <div class="stat">🛡️ Def: 8</div>
+          <div class="stat">🏃‍♂️ Move: 3</div>
+          <div class="stat">✨ Charisma: 10%</div>
+          <div class="stat">⚖️ Wgt: 1.4Kg</div>
+          <div class="stat">🎒 Bag: 6/10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="selector">
+      <button onclick="showProduct('flat-bowl')">Star outfit - get ready</button>
+      <button onclick="showProduct('deep-bowl')">Morning outfit - fresh and vibrant</button>
+      <button onclick="showProduct('dinner-plate')">Rockstar outfit - design for champions</button>
+      <button onclick="showProduct('spoon')">Fun outfit - Its fun until you cry</button>
+    </div>
+
+    <div class="producto-wrapper">
+      <div class="producto-section active" id="flat-bowl">
+        <img src="latisha2.jpg" alt="Flat Bowl">
+        <h2>Star outfit</h2>
+        <p>Serving cosmic realness with every thread this fit’s got stardust stitched in and attitude turned all the way up.</p>
+      </div>
+
+      <div class="producto-section" id="deep-bowl">
+        <img src="latisha3.jpg" alt="Deep Bowl">
+        <h2>Morning outfit</h2>
+        <p>Fresh and vibrant, this outfit is perfect for starting your day with energy. Made from lightweight, breathable fabric.</p>
+      </div>
+
+      <div class="producto-section" id="dinner-plate">
+        <img src="latisha4.jpg" alt="Dinner Plate">
+        <h2>Rockstar outfit</h2>
+        <p>Designed for champions, this outfit combines style and functionality, making you the star of the show.</p>
+      </div>
+
+      <div class="producto-section" id="spoon">
+        <img src="latisha5.jpg" alt="Spoon">
+        <h2>Fun outfit</h2>
+        <p>Its fun until you cry, this outfit is all about playful designs and vibrant colors, perfect for making a statement.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showProduct(id) {
+      document.querySelectorAll('.producto-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      const next = document.getElementById(id);
+      void next.offsetWidth;
+      next.classList.add('active');
+    }
+
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 100; i++) {
+      const p = document.createElement('div');
+      p.classList.add('pixel');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = Math.random() * 200 + 'vh';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      p.style.backgroundColor = ['#7ecbff', '#a3d3ff', '#4ea3d9'][Math.floor(Math.random() * 3)];
+      particleContainer.appendChild(p);
+    }
+  </script>
+</body>
+</html>
+
+
+
